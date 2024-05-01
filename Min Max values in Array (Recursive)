@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class MinMaxRecursive {
+
+    // Recursive function to find minimum and maximum values
+    static void findMinMax(int arr[], int low, int high, MinMax result) {
+        if (low == high) {
+            result.min = arr[low];
+            result.max = arr[low];
+            return;
+        }
+
+        if (high - low == 1) {
+            if (arr[low] < arr[high]) {
+                result.min = arr[low];
+                result.max = arr[high];
+            } else {
+                result.min = arr[high];
+                result.max = arr[low];
+            }
+            return;
+        }
+
+        int mid = (low + high) / 2;
+        MinMax leftResult = new MinMax();
+        MinMax rightResult = new MinMax();
+
+        findMinMax(arr, low, mid, leftResult);
+        findMinMax(arr, mid + 1, high, rightResult);
+
+        result.min = leftResult.min < rightResult.min ? leftResult.min : rightResult.min;
+        result.max = leftResult.max > rightResult.max ? leftResult.max : rightResult.max;
+    }
+
+    // Data structure to hold min and max values
+    static class MinMax {
+        int min;
+        int max;
+    }
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        int arr[] = new int[n];
+
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        MinMax result = new MinMax();
+        findMinMax(arr, 0, n - 1, result);
+
+        System.out.println("Minimum value: " + result.min);
+        System.out.println("Maximum value: " + result.max);
+
+        scanner.close();
+    }
+}
