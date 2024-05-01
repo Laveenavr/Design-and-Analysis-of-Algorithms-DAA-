@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class PowerNonRecursive {
+    
+    // Function to compute power
+    static int power(int a, int n) {
+        int result = 1;
+        while (n > 0) {
+            result *= a;
+            n--;
+        }
+        return result;
+    }
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the base (a): ");
+        int a = scanner.nextInt();
+        
+        System.out.print("Enter the exponent (n): ");
+        int n = scanner.nextInt();
+        
+        // Compute power
+        int result = power(a, n);
+
+        System.out.println("Result: " + result);
+        
+        scanner.close();
+    }
+}
