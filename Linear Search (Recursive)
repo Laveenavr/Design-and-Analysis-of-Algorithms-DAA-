@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class RecursiveLinearSearch {
+
+    // Recursive function to perform linear search
+    static int linearSearch(int arr[], int key, int index) {
+        if (index == arr.length)
+            return -1; // Element not found
+        if (arr[index] == key)
+            return index; // Element found at index
+        // Recur for next index
+        return linearSearch(arr, key, index + 1);
+    }
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        int arr[] = new int[n];
+
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the element to search: ");
+        int key = scanner.nextInt();
+
+        // Perform linear search
+        int index = linearSearch(arr, key, 0);
+
+        if (index != -1) {
+            System.out.println("Element found at index " + index);
+        } else {
+            System.out.println("Element not found");
+        }
+
+        scanner.close();
+    }
+}
